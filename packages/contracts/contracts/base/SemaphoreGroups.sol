@@ -71,7 +71,8 @@ abstract contract SemaphoreGroups is ISemaphoreGroups {
         uint256 merkleTreeRoot = merkleTrees[groupId]._insert(identityCommitment);
         uint256 leafIndex = getMerkleTreeSize(groupId) - 1;
 
-        emit MemberAdded(groupId, leafIndex, identityCommitment, merkleTreeRoot);
+        emit MemberAdded(groupId, leafIndex, identityCommitment);
+        emit RootUpdated(merkleTreeRoot);
     }
 
     /// @dev Adds new members to an existing group.
@@ -107,7 +108,8 @@ abstract contract SemaphoreGroups is ISemaphoreGroups {
             merkleProofSiblings
         );
 
-        emit MemberUpdated(groupId, leafIndex, oldIdentityCommitment, newIdentityCommitment, merkleTreeRoot);
+        emit MemberUpdated(groupId, leafIndex, oldIdentityCommitment, newIdentityCommitment);
+        emit RootUpdated(merkleTreeRoot);
     }
 
     /// @dev Removes an identity commitment from an existing group. A proof of membership is
@@ -124,7 +126,8 @@ abstract contract SemaphoreGroups is ISemaphoreGroups {
 
         uint256 merkleTreeRoot = merkleTrees[groupId]._remove(identityCommitment, merkleProofSiblings);
 
-        emit MemberRemoved(groupId, leafIndex, identityCommitment, merkleTreeRoot);
+        emit MemberRemoved(groupId, leafIndex, identityCommitment);
+        emit RootUpdated(merkleTreeRoot);
     }
 
     /// @dev See {ISemaphoreGroups-hasMember}.
