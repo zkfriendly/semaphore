@@ -22,7 +22,7 @@
         "access": "public"
     },
     "scripts": {
-        "dev": "hardhat node & yarn deploy --network localhost",
+        "dev": "hardhat node & npm run deploy --network localhost",
         "compile": "hardhat compile",
         "deploy": "hardhat compile && hardhat deploy",
         "verify": "hardhat verify",
@@ -70,6 +70,5 @@
     },
     "dependencies": {
         "@semaphore-protocol/contracts": "^4.0.0-alpha.8"
-    },
-    "packageManager": "yarn@4.1.0"
+    }
 }
